@@ -2,6 +2,6 @@
   "name": "com.christides.mod-content-framework",
   "version": "1.0.0",
   "displayName": "Mod Content Framework",
-  "description": "A framework for hack and slash games.",
+  "description": "Framework for modded content.",
   "unity": "2021.3"
 }
