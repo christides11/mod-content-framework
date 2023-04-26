@@ -1,0 +1,19 @@
+{
+    "name": "mcf.umod",
+    "rootNamespace": "",
+    "references": [
+        "GUID:53fc0a76ff6229b43a65ff7caf43dbd3",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "MCF_UMOD_SUPPORT"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
