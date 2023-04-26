@@ -1,0 +1,21 @@
+{
+    "name": "mcf.editor.umod",
+    "rootNamespace": "",
+    "references": [
+        "GUID:53fc0a76ff6229b43a65ff7caf43dbd3",
+        "GUID:0185573e611a9a64183d0c0a934ed922"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "MCF_UMOD_SUPPORT"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

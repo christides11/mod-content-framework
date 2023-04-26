@@ -1,0 +1,18 @@
+{
+    "name": "mcf.examples.simple",
+    "rootNamespace": "",
+    "references": [
+        "GUID:53fc0a76ff6229b43a65ff7caf43dbd3",
+        "GUID:8b57914a800b7404ab7641f38ec8a9a5",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

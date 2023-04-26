@@ -77,3 +77,6 @@ Documentation/index.*
 Documentation/obj/
 _site/
 doc.bat
+
+# Other
+/[Aa]ssets/[Uu]mod
