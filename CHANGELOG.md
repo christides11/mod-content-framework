@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/christides11/mod-content-framework/compare/v1.0.0...v1.1.0) (2023-04-26)
+
+
+### Features
+
+* Addressables & UMod support. ([83e894b](https://github.com/christides11/mod-content-framework/commit/83e894be8d5f569aa4a672b5b0812ff5eb8e6d03))
+
 # 1.0.0 (2023-04-24)
 
 
