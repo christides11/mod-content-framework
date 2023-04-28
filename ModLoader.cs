@@ -34,7 +34,7 @@ namespace mcf
         /// </summary>
         public string modInstallPath = "";
 #if MCF_UMOD_SUPPORT
-        private ModDirectory modDirectory = null;
+        public ModDirectory modDirectory = null;
 #endif
 
         public Dictionary<uint, string> modIDToNamespace = new Dictionary<uint, string>();
