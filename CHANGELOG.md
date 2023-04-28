@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/christides11/mod-content-framework/compare/v1.1.0...v1.1.1) (2023-04-28)
+
+
+### Bug Fixes
+
+* Made modDirectory public ([c433c45](https://github.com/christides11/mod-content-framework/commit/c433c45bb1b6d2c680e2488c26165442ad7daf61))
+
 # [1.1.0](https://github.com/christides11/mod-content-framework/compare/v1.0.0...v1.1.0) (2023-04-26)
 
 
