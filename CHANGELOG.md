@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/christides11/mod-content-framework/compare/v1.1.1...v1.2.0) (2023-05-06)
+
+
+### Features
+
+* Fixed accessibility of methods ([4b86108](https://github.com/christides11/mod-content-framework/commit/4b8610853b0718a30ff8da9b712da3e45637fbd6))
+
 ## [1.1.1](https://github.com/christides11/mod-content-framework/compare/v1.1.0...v1.1.1) (2023-04-28)
 
 
