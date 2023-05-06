@@ -11,7 +11,7 @@ namespace mcf
         public Dictionary<uint, HashSet<(int, int)>> currentlyLoadedContent =
             new Dictionary<uint, HashSet<(int, int)>>();
 
-        [SerializeField] private ModLoader modLoader;
+        public ModLoader modLoader;
 
         public virtual void Initialize()
         {
@@ -54,7 +54,7 @@ namespace mcf
         }
         
         #region Loading
-        public async UniTask LoadContentDefinitions(int contentType, bool track = true)
+        public virtual async UniTask LoadContentDefinitions(int contentType, bool track = true)
         {
             foreach (var m in modLoader.loadedModsByID.Keys)
             {
@@ -62,7 +62,7 @@ namespace mcf
             }
         }
 
-        public async UniTask<bool> LoadContentDefinitions(uint modID, int contentType, bool track = true)
+        public virtual async UniTask<bool> LoadContentDefinitions(uint modID, int contentType, bool track = true)
         {
             if (!modLoader.TryGetLoadedMod(modID, out LoadedModDefinition mod)) return false;
             if (!mod.definition.ContentParsers.TryGetValue(contentType, out IContentParser parser)) return false;
@@ -79,7 +79,7 @@ namespace mcf
             return true;
         }
 
-        public async UniTask<bool> LoadContentDefinition(ModIDContentReference contentReference, bool track = true)
+        public virtual async UniTask<bool> LoadContentDefinition(ModIDContentReference contentReference, bool track = true)
         {
             if (!modLoader.TryGetLoadedMod(contentReference.modID, out LoadedModDefinition mod))
             {
@@ -94,7 +94,7 @@ namespace mcf
         #endregion
 
         #region Getting
-        public List<ModIDContentReference> GetContentDefinitionReferences(int contentType)
+        public virtual List<ModIDContentReference> GetContentDefinitionReferences(int contentType)
         {
             List<ModIDContentReference> content = new List<ModIDContentReference>();
             foreach (var m in modLoader.loadedModsByID.Keys)
@@ -104,7 +104,7 @@ namespace mcf
             return content;
         }
 
-        public List<ModIDContentReference> GetContentDefinitionReferences(uint modID, int contentType)
+        public virtual List<ModIDContentReference> GetContentDefinitionReferences(uint modID, int contentType)
         {
             List<ModIDContentReference> content = new List<ModIDContentReference>();
 
@@ -119,7 +119,7 @@ namespace mcf
             return content;
         }
 
-        public List<T> GetContentDefinitions<T>(int contentType) where T : IContentDefinition
+        public virtual List<T> GetContentDefinitions<T>(int contentType) where T : IContentDefinition
         {
             List<T> contents = new List<T>();
 
@@ -130,7 +130,7 @@ namespace mcf
             return contents;
         }
 
-        public List<T> GetContentDefinitions<T>(uint modGUID, int contentType) where T : IContentDefinition
+        public virtual List<T> GetContentDefinitions<T>(uint modGUID, int contentType) where T : IContentDefinition
         {
             List<T> contents = new List<T>();
 
@@ -147,12 +147,12 @@ namespace mcf
             return contents;
         }
 
-        public IContentDefinition GetContentDefinition(ModIDContentReference contentReference)
+        public virtual IContentDefinition GetContentDefinition(ModIDContentReference contentReference)
         {
             return GetContentDefinition<IContentDefinition>(contentReference);
         }
         
-        public T GetContentDefinition<T>(ModIDContentReference contentReference) where T : IContentDefinition
+        public virtual T GetContentDefinition<T>(ModIDContentReference contentReference) where T : IContentDefinition
         {
             if (!modLoader.TryGetLoadedMod(contentReference.modID, out LoadedModDefinition mod)) return null;
             if (!mod.definition.ContentParsers.TryGetValue(contentReference.contentType, out IContentParser parser)) return null;
@@ -161,7 +161,7 @@ namespace mcf
         #endregion
 
         #region Unloading
-        public void UnloadAllContent()
+        public virtual void UnloadAllContent()
         {
             var copy = currentlyLoadedContent.Keys.ToList();
             foreach (var key in copy)
@@ -174,7 +174,7 @@ namespace mcf
             }
         }
         
-        public bool UnloadContentDefinition(ModIDContentReference contentReference, bool ignoreIfTracked = false)
+        public virtual bool UnloadContentDefinition(ModIDContentReference contentReference, bool ignoreIfTracked = false)
         {
             
             if (!modLoader.TryGetLoadedMod(contentReference.modID, out LoadedModDefinition mod))
@@ -195,7 +195,7 @@ namespace mcf
         #endregion
         
         #region Temporary Loading
-        public async UniTask<List<ModIDContentReference>> GetPaginatedContent(int contentType, int amtPerPage, int page, HashSet<string> requiredTags)
+        public virtual async UniTask<List<ModIDContentReference>> GetPaginatedContent(int contentType, int amtPerPage, int page, HashSet<string> requiredTags)
         {
             var contentReferences = new List<ModIDContentReference>();
             int startAmt = page * amtPerPage;
@@ -229,19 +229,19 @@ namespace mcf
         }
         #endregion
         
-        private void TrackItem(ModIDContentReference contentReference)
+        protected virtual void TrackItem(ModIDContentReference contentReference)
         {
             if(currentlyLoadedContent.ContainsKey(contentReference.modID) == false) currentlyLoadedContent.Add(contentReference.modID, new HashSet<(int, int)>());
             currentlyLoadedContent[contentReference.modID].Add((contentReference.contentType, contentReference.contentIdx));
         }
 
-        private void UntrackItem(ModIDContentReference contentReference)
+        protected virtual void UntrackItem(ModIDContentReference contentReference)
         {
             if (currentlyLoadedContent.ContainsKey(contentReference.modID) == false) return;
             currentlyLoadedContent[contentReference.modID].Remove((contentReference.contentType, contentReference.contentIdx));
         }
 
-        private bool IsItemTracked(ModIDContentReference contentReference)
+        protected virtual bool IsItemTracked(ModIDContentReference contentReference)
         {
             if (!currentlyLoadedContent.ContainsKey(contentReference.modID)) return false;
             return currentlyLoadedContent[contentReference.modID]
