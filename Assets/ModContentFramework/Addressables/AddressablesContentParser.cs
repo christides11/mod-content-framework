@@ -99,6 +99,7 @@ namespace mcf.addressables
             if(contentHandles[index].Status == AsyncOperationStatus.Succeeded)
             {
                 contentHandles[index].Result.Identifier = index;
+                contentHandles[index].Result.StringReference = new ModStringContentSetReference(modDefinition.definition.ModNamespace, IntToGUID[index]);
                 return true;
             }
 

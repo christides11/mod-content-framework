@@ -104,12 +104,73 @@ namespace mcf.umod
                     ((IUModModHostRef)contentHandles[index].Result).modHost = umodModDefinition.host;
                 }
                 contentHandles[index].Result.Identifier = index;
+                contentHandles[index].Result.StringReference = new ModStringContentSetReference(modDefinition.definition.ModNamespace, IntToGUID[index]);
                 return true;
             }
 
             Debug.LogError($"Error loading {GUIDToInt.First(x => x.Value == index).Key.ToString()}: could not load.");
             contentHandles.Remove(index);
             return false;
+        }
+
+        public override List<IContentDefinition> GetContentDefinitions()
+        {
+            List<IContentDefinition> contentList = new List<IContentDefinition>();
+            foreach (var content in contentHandles.Values)
+            {
+                contentList.Add(content.Result);
+            }
+            return contentList;
+        }
+
+        public override IContentDefinition GetContentDefinition(string contentIdentifier)
+        {
+            // Content does not exist, or was not loaded.
+            if (contentHandles.ContainsKey(GUIDToInt[contentIdentifier]) == false)
+            {
+                return null;
+            }
+            return contentHandles[GUIDToInt[contentIdentifier]].Result;
+        }
+
+        public override IContentDefinition GetContentDefinition(int index)
+        {
+            if (contentHandles.ContainsKey(index) == false)
+            {
+                return null;
+            }
+            return contentHandles[index].Result;
+        }
+
+        public override void UnloadContentDefinitions()
+        {
+            foreach (var v in contentHandles)
+            {
+                UnloadContentDefinition(v.Key);
+            }
+            contentHandles.Clear();
+        }
+
+        public override void UnloadContentDefinition(string contentIdentifier)
+        {
+            if (contentHandles.ContainsKey(GUIDToInt[contentIdentifier]) == false) return;
+
+            if (contentHandles[GUIDToInt[contentIdentifier]].IsSuccessful)
+            {
+                contentHandles[GUIDToInt[contentIdentifier]].Result.Unload();
+            }
+            contentHandles.Remove(GUIDToInt[contentIdentifier]);
+        }
+
+        public override void UnloadContentDefinition(int index)
+        {
+            if (contentHandles.ContainsKey(index) == false) return;
+
+            if (contentHandles[index].IsSuccessful)
+            {
+                contentHandles[index].Result.Unload();
+            }
+            contentHandles.Remove(index);
         }
     }
 }
