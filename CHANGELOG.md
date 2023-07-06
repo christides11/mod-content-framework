@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/christides11/mod-content-framework/compare/v1.2.0...v1.3.0) (2023-07-06)
+
+
+### Features
+
+* Added StringReference to IContentDefinition ([2bb552f](https://github.com/christides11/mod-content-framework/commit/2bb552ff32f9e46d912d69784f99f3618cca1767))
+
 # [1.2.0](https://github.com/christides11/mod-content-framework/compare/v1.1.1...v1.2.0) (2023-05-06)
 
 
