@@ -6,6 +6,7 @@ namespace mcf
 {
     public abstract class IContentDefinition : ScriptableObject
     {
+        public virtual ModStringContentSetReference StringReference { get; set; }
         public virtual int Identifier { get; set; }
         public virtual string Name { get; }
         public virtual string Description { get; }
