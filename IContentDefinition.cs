@@ -6,13 +6,14 @@ namespace mcf
 {
     public abstract class IContentDefinition : ScriptableObject
     {
-        public virtual ModStringContentSetReference StringReference { get; set; }
+        public virtual ModStringContentSetReference StringReference { get => stringReference; set { stringReference = value; } }
         public virtual int Identifier { get; set; }
         public virtual string Name { get; }
         public virtual string Description { get; }
         public virtual List<string> Tags => tags;
 
-        [SerializeField] private List<string> tags;
+        protected ModStringContentSetReference stringReference;
+        [SerializeField] protected List<string> tags;
         
         public abstract UniTask<bool> Load();
         public abstract bool Unload();
