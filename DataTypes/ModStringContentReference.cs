@@ -15,6 +15,13 @@ namespace mcf
             this.contentType = contentType;
             this.contentGUID = contentGuid;
         }
+
+        public ModStringContentReference(ModStringContentSetReference setReference, int contentType)
+        {
+            this.modGUID = setReference.modGUID;
+            this.contentType = contentType;
+            this.contentGUID = setReference.contentGUID;
+        }
         
         public bool IsValid()
         {

@@ -14,6 +14,12 @@ namespace mcf
             this.contentGUID = contentGuid;
         }
 
+        public ModStringContentSetReference(ModStringContentReference contentReference)
+        {
+            this.modGUID = contentReference.modGUID;
+            this.contentGUID = contentReference.contentGUID;
+        }
+
         public bool IsValid()
         {
             if (string.IsNullOrEmpty(modGUID)) return false;
