@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/christides11/mod-content-framework/compare/v1.3.1...v1.4.0) (2023-07-30)
+
+
+### Features
+
+* Added more reference types ([d1cfa4e](https://github.com/christides11/mod-content-framework/commit/d1cfa4e126d7d6baa571bc27cd2603c039ea8a41))
+
 ## [1.3.1](https://github.com/christides11/mod-content-framework/compare/v1.3.0...v1.3.1) (2023-07-06)
 
 
