@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/christides11/mod-content-framework/compare/v1.4.0...v1.5.0) (2023-07-31)
+
+
+### Features
+
+* More references. ([dcdb32b](https://github.com/christides11/mod-content-framework/commit/dcdb32b4488bbcf9ce666621360fcba4ee5a61ac))
+
 # [1.4.0](https://github.com/christides11/mod-content-framework/compare/v1.3.1...v1.4.0) (2023-07-30)
 
 
