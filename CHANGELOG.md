@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/christides11/mod-content-framework/compare/v1.5.0...v1.6.0) (2023-07-31)
+
+
+### Features
+
+* Equals for item references. ([cf97ad1](https://github.com/christides11/mod-content-framework/commit/cf97ad138e60acfec9d2c2f76f6b0807853b62cb))
+
 # [1.5.0](https://github.com/christides11/mod-content-framework/compare/v1.4.0...v1.5.0) (2023-07-31)
 
 
