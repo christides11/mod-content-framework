@@ -15,6 +15,14 @@ namespace mcf
             this.contentType = contentType;
             this.contentIdx = contentIdx;
         }
+
+        public ModIDContentReference(string str)
+        {
+            var strs = str.Split(':');
+            modID = uint.Parse(strs[0]);
+            contentType = int.Parse(strs[1]);
+            contentIdx = int.Parse(strs[2]);
+        }
         
         public bool IsValid()
         {
