@@ -22,7 +22,15 @@ namespace mcf
             this.contentType = contentType;
             this.contentGUID = setReference.contentGUID;
         }
-        
+
+        public ModStringContentReference(string str)
+        {
+            var strs = str.Split(':');
+            modGUID = strs[0];
+            contentType = int.Parse(strs[1]);
+            contentGUID = strs[2];
+        }
+
         public bool IsValid()
         {
             if (contentType == 0) return false;

@@ -20,6 +20,13 @@ namespace mcf
             this.contentGUID = contentReference.contentGUID;
         }
 
+        public ModStringContentSetReference(string str)
+        {
+            var strs = str.Split(':');
+            modGUID = strs[0];
+            contentGUID = strs[1];
+        }
+
         public bool IsValid()
         {
             if (string.IsNullOrEmpty(modGUID)) return false;
