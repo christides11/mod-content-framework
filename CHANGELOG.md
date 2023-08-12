@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/christides11/mod-content-framework/compare/v1.6.0...v1.7.0) (2023-08-12)
+
+
+### Features
+
+* To and from string for content references ([b79a4c3](https://github.com/christides11/mod-content-framework/commit/b79a4c36993373eeeae772f3aa0d5c5e390b7fc2))
+
 # [1.6.0](https://github.com/christides11/mod-content-framework/compare/v1.5.0...v1.6.0) (2023-07-31)
 
 
