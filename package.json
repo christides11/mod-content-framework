@@ -1,6 +1,6 @@
 {
   "name": "com.christides.mod-content-framework",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "displayName": "Mod Content Framework",
   "description": "Framework for modded content.",
   "unity": "2021.3",
