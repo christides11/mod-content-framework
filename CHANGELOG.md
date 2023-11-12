@@ -1,3 +1,10 @@
+## [1.7.1](https://github.com/christides11/mod-content-framework/compare/v1.7.0...v1.7.1) (2023-11-12)
+
+
+### Bug Fixes
+
+* Fixed unnecessary UMod.BuildEngine reference ([f9704aa](https://github.com/christides11/mod-content-framework/commit/f9704aa4ac0b464500e3d376f12ec7563351123a))
+
 # [1.7.0](https://github.com/christides11/mod-content-framework/compare/v1.6.0...v1.7.0) (2023-08-12)
 
 
