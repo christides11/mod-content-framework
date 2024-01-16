@@ -18,17 +18,14 @@ namespace mcf
 
         }
 
-        public virtual void Update()
+        public virtual void PrintCurrentlyLoadedContent()
         {
-            if (Input.GetKeyDown(KeyCode.F10))
+            foreach (var v in currentlyLoadedContent)
             {
-                foreach (var v in currentlyLoadedContent)
+                Debug.Log($"{v.Key.ToString()} : {v.Value.Count}");
+                foreach (var b in v.Value)
                 {
-                    Debug.Log($"{v.Key.ToString()} : {v.Value.Count}");
-                    foreach (var b in v.Value)
-                    {
-                        Debug.Log(b.ToString());
-                    }
+                    Debug.Log(b.ToString());
                 }
             }
         }
@@ -64,8 +61,8 @@ namespace mcf
 
         public virtual async UniTask<bool> LoadContentDefinitions(uint modID, int contentType, bool track = true)
         {
-            if (!modLoader.TryGetLoadedMod(modID, out LoadedModDefinition mod)) return false;
-            if (!mod.definition.ContentParsers.TryGetValue(contentType, out IContentParser parser)) return false;
+            if (!modLoader.TryGetLoadedMod(modID, out LoadedModDefinition mod)) { Debug.LogError($"Failure loading all content of type {contentType} in mod {modID}: Could not get loaded mod."); return false; }
+            if (!mod.definition.ContentParsers.TryGetValue(contentType, out IContentParser parser)) { Debug.LogError($"Failure loading all content of type {contentType} in mod {modID}: Could not get content parser of type {contentType}."); return false; }
             var result = await parser.LoadContentDefinitions(mod);
             if (track)
             {
@@ -83,10 +80,14 @@ namespace mcf
         {
             if (!modLoader.TryGetLoadedMod(contentReference.modID, out LoadedModDefinition mod))
             {
-                Debug.Log($"Failure getting loaded mod. {contentReference.ToString()}.");
+                Debug.LogError($"Failure loading content in mod {contentReference.modID}: Mod could not be got. Are you sure it's loaded?");
                 return false;
             }
-            if (!mod.definition.ContentParsers.TryGetValue(contentReference.contentType, out IContentParser parser)) return false;
+            if (!mod.definition.ContentParsers.TryGetValue(contentReference.contentType, out IContentParser parser)) 
+            { 
+                Debug.LogError($"Failure loading content parser for content type {contentReference.contentType} for reference {contentReference}."); 
+                return false; 
+            }
             bool result = await parser.LoadContentDefinition(mod, contentReference.contentIdx);
             if(track && result) TrackItem(contentReference);
             return result;
@@ -154,8 +155,16 @@ namespace mcf
         
         public virtual T GetContentDefinition<T>(ModIDContentReference contentReference) where T : IContentDefinition
         {
-            if (!modLoader.TryGetLoadedMod(contentReference.modID, out LoadedModDefinition mod)) return null;
-            if (!mod.definition.ContentParsers.TryGetValue(contentReference.contentType, out IContentParser parser)) return null;
+            if (!modLoader.TryGetLoadedMod(contentReference.modID, out LoadedModDefinition mod))
+            {
+                Debug.LogError($"Failure while getting content from reference {contentReference.ToString()}: Could not get mod. Are you sure it's loaded?");
+                return null;
+            }
+            if (!mod.definition.ContentParsers.TryGetValue(contentReference.contentType, out IContentParser parser))
+            {
+                Debug.LogError($"Failure while getting content from reference {contentReference.ToString()}: Could not get parser for type {contentReference.contentType}.");
+                return null;
+            }
             return (T)parser.GetContentDefinition(contentReference.contentIdx);
         }
         #endregion
@@ -179,12 +188,12 @@ namespace mcf
             
             if (!modLoader.TryGetLoadedMod(contentReference.modID, out LoadedModDefinition mod))
             {
-                Debug.Log($"Get loaded mod Failure. {contentReference.modID.ToString()}.");
+                Debug.LogError($"Failure while unloading content from reference {contentReference.ToString()}: Could not get mod. Are you sure it's loaded?");
                 return false;
             }
 
             if (!mod.definition.ContentParsers.TryGetValue(contentReference.contentType, out IContentParser parser)){
-                Debug.Log($"Get content parser failure. {contentReference.ToString()}");
+                Debug.LogError($"Failure while unloading content from reference {contentReference.ToString()}: Could not get parser for type {contentReference.contentType}.");
                 return false;
             }
             if (ignoreIfTracked && IsItemTracked(contentReference)) return true;
