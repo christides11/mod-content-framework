@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/christides11/mod-content-framework/compare/v1.7.1...v1.8.0) (2024-01-16)
+
+
+### Features
+
+* More informative errors ([7776c40](https://github.com/christides11/mod-content-framework/commit/7776c405321da16ddd1fd77ab0d0fa7caab04dcd))
+
 ## [1.7.1](https://github.com/christides11/mod-content-framework/compare/v1.7.0...v1.7.1) (2023-11-12)
 
 
